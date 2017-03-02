@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <script src="editor-app/libs/angular_1.2.13/angular.min.js"></script>
+    <script src="js/haha.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp" ng-controller="myCtrl">
+    <label><input type="text" value="名字" class="search-word" ng-model="named"/></label>
+    <h1>Hello {{named}}</h1>
+    <p>我的第一个表达式: {{ 5 + 5 }}</p>
+
+    <label><input type="text" value="流程名字" class="search-word" ng-model="processName"/></label>
+    <label><input type="text" value="流程描述" class="search-word" ng-model="processDesprtion"/></label>
+    <button data-ng-click="dialog()">启动流程编辑器</button>
+    <p>{{processName}}{{processDesprtion}}</p>
+</div>
+</body>
+
+</html>

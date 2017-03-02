@@ -1,0 +1,79 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'demo'
+	version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven {
+		url "http://vaadin.com/nexus/content/repositories/vaadin-addons/"
+	}
+}
+
+configurations.all {
+	resolutionStrategy {
+		force 'org.slf4j.impl:StaticLoggerBinder:1.7.22'
+	}
+}
+
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.3.RELEASE'
+
+    compile 'commons-collections:commons-collections:3.2.1'
+    compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+    compile 'commons-beanutils:commons-beanutils:1.8.0'
+    compile 'commons-lang:commons-lang:2.6'
+    compile 'commons-logging:commons-logging:1.1.1'
+    compile 'net.sf.ezmorph:ezmorph:1.0.6'
+
+//	compile('com.google.gwt:gwt-servlet:2.3.0')
+	compile('ch.qos.logback:logback-classic:1.1.8') {
+		exclude group: 'org.slf4j.impl'
+	}
+
+	compile group: 'org.vaadin.addons', name: 'dcharts-widget', version: '0.10.0'
+	compile group: 'org.activiti', name: 'activiti-engine', version: '5.22.0'
+	compile group: 'org.activiti', name: 'activiti-spring', version: '5.22.0'
+	compile group: 'org.activiti', name: 'activiti-explorer', version: '5.22.0'
+	compile group: 'org.activiti', name: 'activiti-modeler', version: '5.22.0'
+	compile group: 'org.activiti', name: 'activiti-diagram-rest', version: '5.22.0'
+	compile group: 'org.activiti', name: 'activiti-simple-workflow', version: '5.22.0'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.6'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.6'
+	compile 'mysql:mysql-connector-java:5.1.6'
+	compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
+
+	//compile group: 'org.activiti', name: 'activiti-viewer', version: '5.22.0'
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+
+	 testCompile('org.springframework.boot:spring-boot-starter-test')
+}
